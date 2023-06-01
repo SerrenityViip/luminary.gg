@@ -1,0 +1,5 @@
+--LUMINARY GG--
+
+if game.PlaceId == 13304142180 then
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/SerrenityViip/luminary.gg/main/supported/become%20a%20painter%20and%20prove%20mom%20wrong%20tycoon'),true))()
+end
