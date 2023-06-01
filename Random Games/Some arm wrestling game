@@ -1,0 +1,44 @@
+local toggleKeybind = Enum.KeyCode.F -- Change this to the keybind You Want
+
+local spamKey = Enum.KeyCode.Space
+
+local isSpamming = false
+
+local function toggleSpam()
+    isSpamming = not isSpamming
+
+    if isSpamming then
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "-Lumina Notification-"; -- the title (ofc)
+        Text = "AutoSpaceBar Enabled"; -- what the text says (ofc)
+        Icon = "rbxassetid://57254792"; -- the image if u want. 
+        Duration = 5; -- how long the notification should in secounds
+        })
+    else
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "-Lumina Notification-"; -- the title (ofc)
+        Text = "AutoSpaceBar Disabled"; -- what the text says (ofc)
+        Icon = "rbxassetid://57254792"; -- the image if u want. 
+        Duration = 5; -- how long the notification should in secounds
+        })
+    end
+end
+
+local function onKeyPress(input)
+    if input.KeyCode == toggleKeybind then
+        toggleSpam()
+    end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(onKeyPress)
+
+while true do
+    if isSpamming then
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, spamKey, false, game:GetService("VirtualUser"))
+        wait()
+        game:GetService("VirtualInputManager"):SendKeyEvent(false, spamKey, false, game:GetService("VirtualUser"))
+        wait()
+    else
+        wait()
+    end
+end
